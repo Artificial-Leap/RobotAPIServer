@@ -3,7 +3,7 @@ from handlers.ocr import initOcr
 from imgServer import initImgServer
 
 initVisionDetector()
-initOcr()
+#initOcr()
 
 def mainLoop():
     while True:

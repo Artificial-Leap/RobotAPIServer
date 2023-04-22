@@ -17,12 +17,19 @@ def on_new_client(clientsocket,addr):
         clientip = x[1][0]
         data = x[0]
 
-        data = pickle.loads(data)
+        if (len(data) == 0):
+            continue
+        try:
+            data = pickle.loads(data)
 
-        img = cv2.imdecode(data, cv2.IMREAD_COLOR)
-        img = getVisionDetector().runDetector(img)
-        
-        cv2.imshow('Img Server', img)
+
+            img = cv2.imdecode(data, cv2.IMREAD_COLOR)
+            img = getVisionDetector().runDetector(img)
+            
+            cv2.imshow('Img Server', img)
+        except Exception as e:
+            print(e)
+            continue
         
         if cv2.waitKey(5) & 0xFF == 27:
             break
@@ -40,7 +47,7 @@ def send(msg):
 
 def initImgServer():
     s = socket.socket()
-    ip = "127.0.0.1"
+    ip = "0.0.0.0"
     port = 7777
     s.bind((ip, port))
     s.listen(1)
