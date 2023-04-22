@@ -2,6 +2,7 @@ import threading
 import cv2
 import socket
 import pickle
+from handlers.vision_detector import getVisionDetector
 
 running = True
 client = None
@@ -19,6 +20,7 @@ def on_new_client(clientsocket,addr):
         data = pickle.loads(data)
 
         img = cv2.imdecode(data, cv2.IMREAD_COLOR)
+        img = getVisionDetector().runDetector(img)
         
         cv2.imshow('Img Server', img)
         
