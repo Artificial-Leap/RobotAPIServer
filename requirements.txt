@@ -8,4 +8,5 @@ easyocr
 gtts
 playsound
 TTS
+clip_interrogator
 torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
